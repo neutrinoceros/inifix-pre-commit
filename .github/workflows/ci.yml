@@ -76,6 +76,7 @@ jobs:
       with:
         enable-cache: false
     - name: Run pre-commit hooks
+      shell: bash
       run: |
         cd downstream
         PYVER="${${{matrix.interpreter.pyver}}%-dev*}"
