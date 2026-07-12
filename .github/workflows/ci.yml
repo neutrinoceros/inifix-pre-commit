@@ -27,7 +27,7 @@ permissions: {}
 
 jobs:
   checks:
-    name: py${{ matrix.python-version }} VS pre-commit ${{ matrix.pre-commit-version }} VS ${{ matrix.downstream }}
+    name: py${{ matrix.interpreter.pyver }} VS pre-commit ${{ matrix.pre-commit-version }} VS ${{ matrix.downstream }}
     strategy:
       matrix:
         os:
