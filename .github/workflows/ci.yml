@@ -72,10 +72,11 @@ jobs:
         python-version: ${{ matrix.interpreter.pyver }}
         debug: true
         nogil: matrix.interpreter.free-threading
+    - run: python --version --version && which python # debug
     - if: ${{ matrix.pre-commit-version == 'latest' }}
-      run: pipx install pre-commit
+      run: pipx install --python $(which python) pre-commit
     - if: ${{ matrix.pre-commit-version != 'latest' }}
-      run: pipx install pre-commit==${{ matrix.pre-commit-version }}
+      run: pipx install --python $(which python) pre-commit==${{ matrix.pre-commit-version }}
     - name: Run pre-commit hooks
       shell: bash
       run: |
