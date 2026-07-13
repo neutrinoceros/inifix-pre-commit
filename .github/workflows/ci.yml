@@ -67,7 +67,7 @@ jobs:
       with:
         python-version: ${{ matrix.interpreter.pyver }}
     - uses: deadsnakes/action@e640ac8743173a67cca4d7d77cd837e514bf98e8 # v3.2.0
-      if: endsWith(matrix.python-version, '-dev')
+      if: endsWith(matrix.python-version.pyver, '-dev')
       with:
         python-version: ${{ matrix.interpreter.pyver }}
         debug: true
