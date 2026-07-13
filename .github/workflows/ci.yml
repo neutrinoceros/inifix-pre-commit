@@ -72,9 +72,13 @@ jobs:
         python-version: ${{ matrix.interpreter.pyver }}
         debug: true
         nogil: matrix.interpreter.free-threading
+    - if: ${{ matrix.pre-commit-version == 'latest' }}
+      run: pipx install pre-commit
+    - if: ${{ matrix.pre-commit-version != 'latest' }}
+      run: pipx install pre-commit==${{ matrix.pre-commit-version }}
     - name: Run pre-commit hooks
       shell: bash
       run: |
         cd downstream
-        pipx run pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
+        pre-commit try-repo ../main \
           --all-files --show-diff-on-failure
