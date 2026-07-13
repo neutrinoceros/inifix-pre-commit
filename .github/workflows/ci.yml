@@ -76,6 +76,5 @@ jobs:
       shell: bash
       run: |
         cd downstream
-        PYVER="${${{matrix.interpreter.pyver}}%-dev}"
         pipx run pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
           --all-files --show-diff-on-failure
