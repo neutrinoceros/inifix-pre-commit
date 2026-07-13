@@ -72,13 +72,10 @@ jobs:
         python-version: ${{ matrix.interpreter.pyver }}
         debug: true
         nogil: matrix.interpreter.free-threading
-    - uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
-      with:
-        enable-cache: false
     - name: Run pre-commit hooks
       shell: bash
       run: |
         cd downstream
         PYVER="${${{matrix.interpreter.pyver}}%-dev}"
-        RUST_LOG=uv=debug uvx -p "$PYVER" pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
+        pipx run pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
           --all-files --show-diff-on-failure
